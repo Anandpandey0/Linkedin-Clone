@@ -100,7 +100,12 @@ const PostModal = (props) => {
                         onChange={(e) => setShareVideo(e.target.value)}
                       />
                       {shareVideo && (
-                        <ReactPlayer width={"100%"} url={shareVideo} />
+                        <ReactPlayer
+                          width="100%"
+                          height="100%"
+                          url={shareVideo}
+                          className="react-player"
+                        />
                       )}
                     </PreviewVideo>
                   )
@@ -287,8 +292,8 @@ const PostButton = styled.div`
   border-radius: 5rem;
 `;
 const Editor = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 800%;
   & > textarea {
     width: 95%;
     height: 50%;
@@ -304,33 +309,39 @@ const Editor = styled.div`
   }
 `;
 const ImageShare = styled.div`
-  border: solid 2px black;
+  /* border: solid 2px black; */
   display: flex;
   flex-direction: column;
+  & > img {
+    align-items: center;
+  }
 `;
 
 const PreviewImage = styled.div`
-  display: flex;
-  align-items: center;
-
   & > img {
-    height: 10rem;
+    margin: 0.5rem auto;
+    height: 100%;
     /* background-color: black; */
-    width: 100%;
+    width: 90%;
     margin-top: 0.5rem;
-    margin-left: 0.5rem;
+    margin-left: auto;
+    /* margin-right: auto; */
     object-fit: contain;
     opacity: 2;
   }
 `;
 const PreviewVideo = styled.div`
   width: 100%;
+  position: relative;
+  padding-top: 56.25%;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
-  & > input {
-    outline: none;
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 const mapStateToProps = (state) => {

@@ -61,7 +61,7 @@ const Feed = (props) => {
         props.articles.map((article, key) => (
           <FeedPost key={key}>
             <PostHeader>
-              <img src={article.actor.image} alt="" />
+              <img src={article.actor.image} alt="ProfilePhoto" />
               <PosterInfo>
                 <h6>{article.actor.title}</h6>
                 <p>{article.actor.description}</p>
@@ -69,15 +69,23 @@ const Feed = (props) => {
               </PosterInfo>
             </PostHeader>
             <PostDesc>{article.description}</PostDesc>
-            <PostImage>
-              <a href="*">
-                {!article.shareImg && article.video ? (
-                  <ReactPlayer width={"100%"} url={article.video} />
-                ) : (
-                  article.sharedImg && <img src={article.sharedImg} alt="" />
-                )}
-              </a>
-            </PostImage>
+            {article.shareImg && !article.video ? (
+              <></>
+            ) : (
+              <>
+                <PostImage>
+                  <a href="*">
+                    {!article.shareImg && article.video ? (
+                      <ReactPlayer width={"100%"} url={article.video} />
+                    ) : (
+                      article.sharedImg && (
+                        <img src={article.sharedImg} alt="" />
+                      )
+                    )}
+                  </a>
+                </PostImage>
+              </>
+            )}
             <PostImpressions>
               <PostLikes>
                 {" "}
@@ -186,7 +194,7 @@ const FeedPost = styled.div`
   margin: 2rem 0rem;
   border: solid 2px lightgrey;
   border-radius: 0.5rem;
-  height: 50vh;
+  height: fit-content;
   width: 100%;
   background-color: white;
 `;
